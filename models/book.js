@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+
 const bookSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -11,7 +12,7 @@ const bookSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
-  pagesCount: {
+  pageCount: {
     type: Number,
     required: true
   },
@@ -24,9 +25,9 @@ const bookSchema = new mongoose.Schema({
     type: Buffer,
     required: true
   },
-  coverImageType:{
-    type:String,
-    required:true
+  coverImageType: {
+    type: String,
+    required: true
   },
   author: {
     type: mongoose.Schema.Types.ObjectId,
@@ -36,8 +37,8 @@ const bookSchema = new mongoose.Schema({
 })
 
 bookSchema.virtual('coverImagePath').get(function() {
-  if (this.coverImage != null && this.coverImageType !=null) {
-    return  `data:${this.coverImageType};charset=utf-8;base64,${this.coverImage.toString('base64')}`
+  if (this.coverImage != null && this.coverImageType != null) {
+    return `data:${this.coverImageType};charset=utf-8;base64,${this.coverImage.toString('base64')}`
   }
 })
 
